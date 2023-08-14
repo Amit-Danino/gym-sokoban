@@ -70,8 +70,8 @@ class SokobanEnv(gym.Env):
         self.viewer = None
         self.max_steps = max_steps
         self.action_space = Discrete(len(ACTION_LOOKUP))
-        screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
-        # screen_height, screen_width = (dim_room[0], dim_room[1])
+        # screen_height, screen_width = (dim_room[0] * 16, dim_room[1] * 16)
+        screen_height, screen_width = (dim_room[0], dim_room[1])
         self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3), dtype= np.uint8)
         
         self.has_started_already = False
