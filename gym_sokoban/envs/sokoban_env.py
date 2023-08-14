@@ -75,7 +75,7 @@ class SokobanEnv(gym.Env):
         self.observation_space = Box(low=0, high=255, shape=(screen_height, screen_width, 3), dtype= np.uint8)
         
         self.has_started_already = False
-        print(reset)
+
         if reset:
             # Initialize Room
             _ = self.reset()

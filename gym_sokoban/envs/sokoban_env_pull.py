@@ -25,7 +25,7 @@ class PushAndPullSokobanEnv(SokobanEnv):
         self.boxes_are_on_target = [False] * num_boxes
         self.action_space = Discrete(len(ACTION_LOOKUP))
         # self.regen_room = regen_room
-        print("main")
+
         _ = self.reset(self.regen_room)
 
     def step(self, action, observation_mode='rgb_array'):
