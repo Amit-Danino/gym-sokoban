@@ -247,15 +247,17 @@ class SokobanEnv(gym.Env):
                 self.original_room_fixed = copy.deepcopy(self.room_fixed)
                 self.original_room_state = copy.deepcopy(self.room_state)
                 self.original_box_mapping = copy.deepcopy(self.box_mapping)
+                self.player_position = np.argwhere(self.room_state == 5)[0]
+
             except (RuntimeError, RuntimeWarning) as e:
                 print("[SOKOBAN] Runtime Error/Warning: {}".format(e))
                 print("[SOKOBAN] Retry . . .")
                 return self.reset(second_player=second_player, render_mode=render_mode)
-        
-        self.room_fixed = copy.deepcopy(self.original_room_fixed)
-        self.room_state = copy.deepcopy(self.original_room_state)
-        self.box_mapping = copy.deepcopy(self.original_box_mapping)
-        self.player_position = np.argwhere(self.room_state == 5)[0]
+        else:
+            self.room_fixed = copy.deepcopy(self.original_room_fixed)
+            self.room_state = copy.deepcopy(self.original_room_state)
+            self.box_mapping = copy.deepcopy(self.original_box_mapping)
+            self.player_position = np.argwhere(self.room_state == 5)[0]
         self.num_env_steps = 0
         self.reward_last = 0
         self.boxes_on_target = 0
