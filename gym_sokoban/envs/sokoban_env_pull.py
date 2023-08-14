@@ -59,7 +59,7 @@ class PushAndPullSokobanEnv(SokobanEnv):
         self._box_getting_closer_reward_calc(prev_dist)
         # Punish steps harder the more steps it does
         # self._punish_steps()
-        # self._reward_player_close_to_box()
+        self._reward_player_close_to_box()
         done = self._check_if_done()
 
         # Convert the observation to our observation (RGB) frame
