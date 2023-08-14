@@ -20,8 +20,10 @@ class SokobanEnv(gym.Env):
                  num_boxes=4,
                  num_gen_steps=None,
                  reset=True,
+                 regen_room=False,
                  observation='rgb_array'):
 
+        self.regen_room = regen_room
         # General Configuration
         self.dim_room = dim_room
         if num_gen_steps == None:
