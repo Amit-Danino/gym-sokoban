@@ -26,7 +26,7 @@ class PushAndPullSokobanEnv(SokobanEnv):
         self.action_space = Discrete(len(ACTION_LOOKUP))
         # self.regen_room = regen_room
         
-        # _ = self.reset(self.regen_room)
+        _ = self.reset(self.regen_room)
 
     def step(self, action, observation_mode='rgb_array'):
         assert action in ACTION_LOOKUP
