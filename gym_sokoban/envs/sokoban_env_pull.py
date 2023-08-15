@@ -143,7 +143,7 @@ class PushAndPullSokobanEnv(SokobanEnv):
                 self.reward_last += self.reward_less_steps() * self.player_getting_farther_from_box_reward
 
     def _calc_box_distance_from_player(self):
-        box_location = self._find_box_location()
+        box_location = self._find_box_location()[0]
         if box_location is None or self.player_position is None:
             return -1
 
@@ -155,10 +155,8 @@ class PushAndPullSokobanEnv(SokobanEnv):
         target_location = self._find_target_location()
         if box_location is None or target_location is None:
             return -1
-        print(box_location)
-        print(target_location)
-        distance = (box_location[0] - target_location[0])**2 + (box_location[1] - target_location[1])**2 #no need to square root
-        print(distance)
+
+        distance = np.sum((box_location - target_location)**2) #no need to square root
         return distance
     
     def _find_target_location(self):
