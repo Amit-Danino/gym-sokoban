@@ -160,18 +160,30 @@ class PushAndPullSokobanEnv(SokobanEnv):
         return distance
     
     def _find_target_location(self):
-        idx = np.argmax(self.room_state == 2)
-        if self.room_state.flat[idx] == 2:
-            self.current_target_pos = np.unravel_index(idx, self.room_state.shape)
-
+        idx = np.argwhere(self.room_state == 2)
+        if len(idx) > 0:
+            self.current_target_pos = np.asarray([np.asarray([loc[0], loc[1]]) for loc in idx])
         return self.current_target_pos
 
     def _find_box_location(self):
-        idx = np.argmax(self.room_state == 4)
-        if self.room_state.flat[idx] == 4:
-            self.current_box_pos = np.unravel_index(idx, self.room_state.shape)
-
+        idx = np.argwhere(self.room_state == 4)
+        if len(idx) > 0:
+            self.current_box_pos = np.asarray([np.asarray([loc[0], loc[1]]) for loc in idx])
         return self.current_box_pos
+    
+    # def _find_target_location(self):
+    #     idx = np.argmax(self.room_state == 2)
+    #     if self.room_state.flat[idx] == 2:
+    #         self.current_target_pos = np.unravel_index(idx, self.room_state.shape)
+
+    #     return self.current_target_pos
+
+    # def _find_box_location(self):
+    #     idx = np.argmax(self.room_state == 4)
+    #     if self.room_state.flat[idx] == 4:
+    #         self.current_box_pos = np.unravel_index(idx, self.room_state.shape)
+
+    #     return self.current_box_pos
     
     def _pull(self, action):
         """
